@@ -1,0 +1,171 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+
+    <link href="~/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/css/prettyPhoto.css" rel="stylesheet">
+    <link href="~/css/price-range.css" rel="stylesheet">
+    <link href="~/css/animate.css" rel="stylesheet">
+    <link href="~/css/main.css" rel="stylesheet">
+    <link href="~/css/responsive.css" rel="stylesheet">
+    <link rel="shortcut icon" href="~/images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="~/images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="~/images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="~/images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="~/images/ico/apple-touch-icon-57-precomposed.png">
+
+
+    @RenderSection("Styles", required: false)
+
+</head>
+<body class="js">
+    <header id="header">
+        <div class="header_top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="contactinfo">
+                            <ul class="nav nav-pills">
+                                <li><a href="tel:441-14-28"><i class="fa fa-phone"></i> 441 1 428</a></li>
+                                <li><a href="mailto:aydin@edu.tr"><i class="fa fa-envelope"></i> aydin@edu.tr</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="social-icons pull-right">
+                            <ul class="nav navbar-nav">
+                                <li><a href="https://www.facebook.com/IAUKampus/" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="https://twitter.com/iaukampus" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="https://www.linkedin.com/school/istanbul-aydin-university/" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="header-middle">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 clearfix">
+                        <div class="logo pull-left">
+                            <div class="companyinfo" style="margin-top:0 !important;">
+                                <h2><span>enstruman</span><br />Shop</h2>
+                            </div>
+                        </div>
+                    </div>
+                 @await Component.InvokeAsync("MenuTopbar") 
+                </div>
+            </div>
+        </div>
+
+        <div class="header-bottom">
+            <div class="container">
+                @await Component.InvokeAsync("Menu")
+            </div>
+        </div>
+    </header>
+    @RenderBody()
+
+
+    <footer id="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="companyinfo">
+                            <h2><span>enstruman</span><br />Shop</h2>
+                        </div>
+                    </div>
+                    <div class="col-sm-7">
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="address">
+                            <img src="images/home/map.png" alt="" />
+                            <p>Beşyol, İnönü Cd. No:38, 34295 Küçükçekmece/İstanbul</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-widget">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="single-widget">
+                            <h2>Yardım</h2>
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><a asp-action="ContactUs" asp-controller="Home">İletişime Geç</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="single-widget">
+                            <h2>Hesap</h2>
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><a asp-action="Orders" asp-controller="User">Siparişlerim</a></li>
+                                <li><a asp-action="Index" asp-controller="Cart">Sepet</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="single-widget">
+                            <h2>Yasal</h2>
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><a href="#">Kullanıcı Sözleşmesi</a></li>
+                                <li><a href="#">Gizlilik Sözleşmesi</a></li>
+                                <li><a href="#">İade Sözleşmesi</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="single-widget">
+                            <h2>Hakkımızda</h2>
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><a asp-action="ContactUs" asp-controller="Home">İletişim</a></li>
+                                <li><a href="@("https://www.google.com/maps/place/%C4%B0stanbul+Ayd%C4%B1n+%C3%9Cniversitesi/@40.9905166,28.7971611,15z/data=!4m2!3m1!1s0x0:0x6594147beb14e9b4?sa=X&ved=2ahUKEwjqvp34of3wAhUlhv0HHYeZDdcQ_BIwLnoECGQQBQ")" target="_blank">Konum</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-sm-offset-1">
+                        <div class="single-widget">
+                            <h2>Bültene Abone Ol</h2>
+                            <form action="#" class="searchform">
+                                <input type="text" placeholder="E-posta adresiniz.." />
+                                <button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i></button>
+                                <p>Bültenimize abone olarak indirimlerden anında haberdar olun.</p>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <p class="pull-left">Copyright © 2021 Tüm Hakları Saklıdır.</p>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+
+
+
+
+    <script src="~/js/jquery.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/jquery.scrollUp.min.js"></script>
+    <script src="~/js/price-range.js"></script>
+    <script src="~/js/jquery.prettyPhoto.js"></script>
+    <script src="~/js/main.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,26 @@
+﻿@model TopbarViewModel
+
+@if (Model.Authenticated)
+{
+    <div class="col-md-8 clearfix">
+        <div class="shop-menu clearfix pull-right">
+            <ul class="nav navbar-nav">
+                <li><a asp-action="Index" asp-controller="Cart"><i class="fa fa-shopping-cart"></i> Sepet</a></li>
+                <li><a>Hoşgeldiniz @Model.FullName</a></li>
+                @if (Model.IsAdmin)
+                {<li class="text-danger"><a asp-area="Admin" asp-controller="Home" asp-action="Index" class="text-danger" style="color:red !important;">Yönetim Paneli</a></li>}
+                <li><a asp-action="Logout" asp-controller="Auth"><i class="fa fa-sign-out"></i> Çıkış Yap</a></li>
+            </ul>
+        </div>
+    </div>
+}
+else
+{
+    <div class="col-md-8 clearfix">
+        <div class="shop-menu clearfix pull-right">
+            <ul class="nav navbar-nav">
+                <li><a asp-action="Login" asp-controller="Auth"><i class="fa fa-lock"></i> Giriş Yap</a></li>
+            </ul>
+        </div>
+    </div>
+}

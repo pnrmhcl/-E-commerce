@@ -1,0 +1,56 @@
+﻿@model LoginViewModel
+<section id="form">
+    <!--form-->
+    <div class="container">
+        <div class="row">
+            @if (!String.IsNullOrEmpty(ViewBag.Success))
+            {
+                <div class="col-sm-2"></div>
+                <div class="col-sm-8">
+                    <div class="alert alert-success">
+                        @ViewBag.Success
+                    </div>
+                </div>
+                <div class="col-sm-2"></div>
+            }
+
+            <div class="col-sm-4 col-sm-offset-1">
+                <div class="login-form">
+                    <!--login form-->
+                    <h2>Giriş Yap</h2>
+                    <form asp-action="Login">
+                        <input type="email" asp-for="Email" required placeholder="E-posta adresiniz" />
+                        <input type="password" asp-for="Password" required placeholder="Şifre" />
+                        <button type="submit" class="btn btn-default">Giriş Yap</button>
+                        @if (!String.IsNullOrEmpty(ViewBag.Exception))
+                        {
+                            <span class="text-danger">@ViewBag.Exception</span>
+                        }
+                    </form>
+                </div><!--/login form-->
+            </div>
+            <div class="col-sm-1">
+                <h2 class="or">VEYA</h2>
+            </div>
+            <div class="col-sm-4">
+                <div class="signup-form">
+                    <!--sign up form-->
+                    <h2>Kayıt Ol</h2>
+                    <form asp-action="Register">
+                        <input type="text" name="firstname" required placeholder="Ad" />
+                        <input type="text" name="surname" required placeholder="Soyad" />
+                        <input type="text" name="address" required placeholder="Adres" />
+                        <input type="email" name="emailregister" required placeholder="E-posta Adresi" />
+                        <input type="password" name="passwordregister" required placeholder="Şifreniz" />
+                        <input type="password" name="passwordconfirm" required placeholder="Şifreniz Tekrar" />
+                        <button type="submit" class="btn btn-default">Kayıt Ol</button>
+                        @if (!String.IsNullOrEmpty(ViewBag.RegisterException))
+                        {
+                            <span class="text-danger">@ViewBag.RegisterException</span>
+                        }
+                    </form>
+                </div><!--/sign up form-->
+            </div>
+        </div>
+    </div>
+</section><!--/form-->

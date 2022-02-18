@@ -1,0 +1,47 @@
+﻿@model List<ProductImage>
+<div class="main-header" style="margin-top: 0px;">
+    <h4>Ürün Resimleri</h4>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <!-- Basic Table starts -->
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-header-text">Ürün Resimler Listesi</h5>
+                <p>Ürün resimlerini silebilirsiniz.</p>
+            </div>
+            <div class="card-block">
+                <div class="row">
+                    <div class="col-sm-12 table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Resim</th>
+                                    <th>Ürün Adı</th>
+                                    <th>İşlemler</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.Id</td>
+                                        <td><img style="width:125px;" src="@($"/images/products/{item.Path}")"/></td>
+                                        <td>@item.Product.Name</td>
+                                        <td>
+                                            <a class="btn btn-danger" asp-controller="ProductImage" asp-action="Delete" asp-route-id="@item.Id">Sil</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+

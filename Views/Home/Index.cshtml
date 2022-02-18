@@ -1,0 +1,209 @@
+﻿@model HomepageViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@if (Model.Sliders.Count > 0)
+{
+    <section id="slider">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div id="slider-carousel" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            @for (int i = 0; i < Model.Sliders.Count; i++)
+                            {
+                                <li data-target="#slider-carousel" data-slide-to="@i" class="@(i==0 ? "active" : "")"></li>
+                            }
+                        </ol>
+
+                        <div class="carousel-inner">
+                            @for (int i = 0; i < Model.Sliders.Count; i++)
+                            {
+                                if (i == 0)
+                                {
+                                    <div class="item active">
+                                        <div class="col-sm-6">
+
+                                            @Html.Raw(Model.Sliders[i].Text)
+
+                                            <a href="@Model.Sliders[i].ButtonLink" class="btn btn-default get">
+                                                @Model.Sliders[i].ButtonText
+                                            </a>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <img src="~/images/home/@Model.Sliders[i].PicturePath" class="girl img-responsive" alt="" />
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="item">
+                                        <div class="col-sm-6">
+                                            @Html.Raw(Model.Sliders[i].Text)
+                                            <a href="@Model.Sliders[i].ButtonLink" class="btn btn-default get">
+                                                @Model.Sliders[i].ButtonText
+                                            </a>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <img src="~/images/home/@Model.Sliders[i].PicturePath" class="girl img-responsive" alt="" />
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </div>
+
+                        <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+                            <i class="fa fa-angle-left"></i>
+                        </a>
+                        <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="left-sidebar">
+                    <h2>Kategoriler</h2>
+
+
+                    <div class="panel-group category-products" id="accordian">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title"><a asp-action="Index" asp-controller="Shop" >Tümü</a></h4>
+                            </div>
+                        </div>
+                        @foreach (Category category in Model.Categories)
+                        {
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title"><a asp-action="Category" asp-controller="Shop" asp-route-id="@category.Id">@category.Name</a></h4>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                
+
+                </div>
+            </div>
+
+            <div class="col-sm-9 padding-right">
+                <div class="features_items">
+                    <h2 class="title text-center">Popüler Ürünler</h2>
+                    @foreach (var item in Model.Products)
+                    {
+                        <div class="col-sm-4">
+                            <div class="product-image-wrapper">
+                                <div class="single-products">
+                                    <div class="productinfo text-center">
+                                        @if (item.ProductImages.Count > 0)
+                                        {
+                                            <img src="@($"/images/products/{item.ProductImages.FirstOrDefault().Path}")" alt="" />
+                                        }
+                                        <h2>@item.Price.ToString("##.##") ₺</h2>
+                                        <p>@item.Name</p>
+                                        <a asp-action="AddToCart" asp-controller="Cart" asp-route-productId="@item.Id" asp-route-quantity="1" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Sepete Ekle</a>
+                                    </div>
+                                    <div class="product-overlay">
+                                        <div class="overlay-content">
+                                            <h2>@item.Price.ToString("##.##") ₺</h2>
+                                            <p>@item.Name</p>
+                                            <a asp-action="AddToCart" asp-controller="Cart" asp-route-productId="@item.Id" asp-route-quantity="1" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Sepete Ekle</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+
+                </div><!--features_items-->
+
+                <div class="category-tab">
+                    <!--category-tab-->
+                    <div class="col-sm-12">
+                        <ul class="nav nav-tabs">
+                            @for (int i = 0; i < Model.Categories.Count; i++)
+                            {
+                                if (i == 0)
+                                {
+                                    <li class="active"><a href="#@Model.Categories[i].Name" data-toggle="tab">@Model.Categories[i].Name</a></li>
+                                }
+                                else
+                                {
+                                    <li class=""><a href="#@Model.Categories[i].Name" data-toggle="tab">@Model.Categories[i].Name</a></li>
+                                }
+                            }
+
+                        </ul>
+                    </div>
+                    <div class="tab-content">
+                        @for (int i = 0; i < Model.Categories.Count; i++)
+                        {
+                            if (i == 0)
+                            {
+                                <div class="tab-pane fade active in" id="@Model.Categories[i].Name">
+                                    @foreach (Product product in Model.Categories[i].Products)
+                                    {
+                                        <div class="col-sm-3">
+                                            <div class="product-image-wrapper">
+                                                <div class="single-products">
+                                                    <div class="productinfo text-center">
+                                                        @if (product.ProductImages.Count > 0)
+                                                        {
+                                                            <img src="@($"/images/products/{product.ProductImages.FirstOrDefault().Path}")" alt="" />
+                                                        }
+                                                       
+                                                        <h2>@product.Price.ToString("##.##") ₺ </h2>
+                                                        <p>@product.Name</p>
+                                                        <a asp-action="AddToCart" asp-controller="Cart" asp-route-productId="@product.Id" asp-route-quantity="1" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Sepete Ekle</a>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="tab-pane fade" id="@Model.Categories[i].Name">
+                                    @foreach (Product product in Model.Categories[i].Products)
+                                    {
+                                        <div class="col-sm-3">
+                                            <div class="product-image-wrapper">
+                                                <div class="single-products">
+                                                    <div class="productinfo text-center">
+                                                        @if (product.ProductImages.Count > 0)
+                                                        {
+                                                            <img src="@($"/images/products/{product.ProductImages.FirstOrDefault().Path}")" alt="" />
+                                                        }
+                                                        <h2>@product.Price.ToString("##.##") ₺ </h2>
+                                                        <p>@product.Name</p>
+                                                        <a asp-action="AddToCart" asp-controller="Cart" asp-route-productId="@product.Id" asp-route-quantity="1" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Sepete Ekle</a>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                        }
+                    </div>
+                        </div>
+                    <!--/category-tab-->
+
+                </div>
+        </div>
+    </div>
+</section>

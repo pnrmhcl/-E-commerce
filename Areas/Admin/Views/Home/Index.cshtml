@@ -1,0 +1,55 @@
+﻿@model DashboardModel
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="main-header">
+            <h4>Ana Panel</h4>
+        </div>
+    </div>
+    <!-- 4-blocks row start -->
+    <div class="row dashboard-header">
+        <div class="col-lg-3 col-md-6">
+            <div class="card dashboard-product">
+                <span>Ürünler</span>
+                <h2 class="dashboard-total-products">@Model.ProductCount</h2>
+                <span class="label label-warning">adet</span> ürün listeleniyor.
+                <div class="side-box">
+                    <i class="ti-signal text-warning-color"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="card dashboard-product">
+                <span>Müşteriler</span>
+                <h2 class="dashboard-total-products">@Model.UserCount</h2>
+                <span class="label label-primary">adet</span> üye müşterimiz var.
+                <div class="side-box ">
+                    <i class="ti-gift text-primary-color"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="card dashboard-product">
+                <span>Kategori</span>
+                <h2 class="dashboard-total-products">@Model.CategoryCount</h2>
+                <span class="label label-success">ayrı</span>kategoride ürün listeleniyor.
+                <div class="side-box">
+                    <i class="ti-direction-alt text-success-color"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="card dashboard-product">
+                <span>Sipariş</span>
+                <h2 class="dashboard-total-products">@Model.OrderCount</h2>
+                <span class="label label-danger">adet</span> sipariş alındı.
+                <div class="side-box">
+                    <i class="ti-rocket text-danger-color"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+
+</div>

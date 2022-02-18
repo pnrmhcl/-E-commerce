@@ -1,0 +1,67 @@
+﻿@model CategoryPageViewModel
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="left-sidebar">
+                    <h2>Kategoriler</h2>
+
+
+                    <div class="panel-group category-products" id="accordian">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title"><a asp-action="Index" asp-controller="Shop">Tümü</a></h4>
+                            </div>
+                        </div>
+                        @foreach (Category category in Model.Categories)
+                        {
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title"><a class="@(category.Id == Model.Category.Id ? "active" : "")" asp-action="Category" asp-controller="Shop" asp-route-id="@category.Id">@category.Name</a></h4>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+
+
+                </div>
+            </div>
+
+            <div class="col-sm-9 padding-right">
+                <div class="features_items">
+                    <h2 class="title text-center">@Model.Category.Name Kategorisindeki Ürünler</h2>
+                    @foreach (var item in Model.Products)
+                    {
+                        <div class="col-sm-4">
+                            <div class="product-image-wrapper">
+                                <div class="single-products">
+                                    <div class="productinfo text-center">
+                                        @if (item.ProductImages.Count > 0)
+                                        {
+                                            <img src="@($"/images/products/{item.ProductImages.FirstOrDefault().Path}")" alt="" />
+                                        }
+                                        <h2>@item.Price.ToString("##.##") ₺</h2>
+                                        <p>@item.Name</p>
+                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Sepete Ekle</a>
+                                    </div>
+                                    <div class="product-overlay">
+                                        <div class="overlay-content">
+                                            <h2>@item.Price.ToString("##.##") ₺</h2>
+                                            <p>@item.Name</p>
+                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Sepete Ekle</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
